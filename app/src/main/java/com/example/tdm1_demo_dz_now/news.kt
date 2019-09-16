@@ -1,13 +1,11 @@
 package com.example.tdm1_demo_dz_now
 
 import android.support.design.widget.TabLayout
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -18,9 +16,10 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.card_custom_view.view.*
 import kotlinx.android.synthetic.main.fragment_news.view.*
-import java.util.jar.Attributes
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import com.google.firebase.auth.FirebaseAuth
 
 class news : AppCompatActivity() {
     /**
@@ -32,11 +31,15 @@ class news : AppCompatActivity() {
      * [android.support.v4.app.FragmentStatePagerAdapter].
      */
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
-
+    companion object {
+        fun getLaunchIntent(from: Context) = Intent(from, news::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
-
+        setupUI()
         setSupportActionBar(toolbar)
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -51,6 +54,16 @@ class news : AppCompatActivity() {
     }
 
 
+    private fun setupUI() {
+        sign_out_button.setOnClickListener {
+            signOut()
+        }
+    }
+    private fun signOut() {
+        startActivity(HomeActivity.getLaunchIntent(this))
+        FirebaseAuth.getInstance().signOut()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_news, menu)
@@ -59,7 +72,7 @@ class news : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the HomeActivity/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
 
@@ -124,7 +137,7 @@ class news : AppCompatActivity() {
         var cpt = 1
 
         fun handleOnClick() {
-            val intent = Intent(context, Article::class.java)
+            val intent = Intent(context, NewsActivity::class.java)
             // start your next activity
             startActivity(intent)
         }
@@ -202,4 +215,8 @@ class news : AppCompatActivity() {
             }
         }
     }
+
+
+
+
 }

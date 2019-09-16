@@ -10,5 +10,8 @@
     <string name="tab_text_4">Sport</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_sauvgarde">Favoris</string>
-
+    <string name="request_client_id">831213750868-hi255cs8hd9ilcnjh0p7fa8349r2n570.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">482567248989741</string>
+    <string name="fb_login_protocol_scheme">fb482567248989741</string>
+    <string name="sign_out_button">Sign out</string>
 </resources>
