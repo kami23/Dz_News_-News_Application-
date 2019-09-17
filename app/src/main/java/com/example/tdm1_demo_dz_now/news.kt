@@ -39,7 +39,7 @@ class news : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
-        setupUI()
+     //   setupUI()
         setSupportActionBar(toolbar)
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -54,7 +54,7 @@ class news : AppCompatActivity() {
     }
 
 
-    private fun setupUI() {
+   /*private fun setupUI() {
         sign_out_button.setOnClickListener {
             signOut()
         }
@@ -62,7 +62,7 @@ class news : AppCompatActivity() {
     private fun signOut() {
         startActivity(HomeActivity.getLaunchIntent(this))
         FirebaseAuth.getInstance().signOut()
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

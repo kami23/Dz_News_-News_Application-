@@ -17,7 +17,13 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class HomeActivity : AppCompatActivity() {
 
-    //1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_home)
+    }
+}
+  /*  //1
     val RC_SIGN_IN: Int = 1
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var mGoogleSignInOptions: GoogleSignInOptions
@@ -33,9 +39,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        configureGoogleSignIn()
-        setupUI()
-        firebaseAuth = FirebaseAuth.getInstance()
+     //   configureGoogleSignIn()
+       // setupUI()
+        //firebaseAuth = FirebaseAuth.getInstance()
 
         /*bg_image.setOnClickListener {
             val intent = Intent(this, news::class.java)
@@ -99,4 +105,4 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
-}
+}*/
