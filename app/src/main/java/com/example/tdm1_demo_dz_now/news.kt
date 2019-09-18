@@ -19,7 +19,18 @@ import kotlinx.android.synthetic.main.fragment_news.view.*
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import com.google.firebase.auth.FirebaseAuth
+import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
+import android.widget.Toast
+import com.example.tdm1_demo_dz_now.Adapter.ListNewsAdapter
+import com.example.tdm1_demo_dz_now.Adapter.ListSourceAdapter
+import com.example.tdm1_demo_dz_now.Common.Common
+import com.example.tdm1_demo_dz_now.Interface.NewsService
+import com.example.tdm1_demo_dz_now.Model.WebSite
+import dmax.dialog.SpotsDialog
+import kotlinx.android.synthetic.main.fragment_news.*
+import retrofit2.Call
+import retrofit2.Response
 
 class news : AppCompatActivity() {
     /**
@@ -50,7 +61,6 @@ class news : AppCompatActivity() {
 
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
-
     }
 
 
@@ -135,9 +145,13 @@ class news : AppCompatActivity() {
      */
     class PlaceholderFragment (): Fragment() {
         var cpt = 1
+        private lateinit var mService: NewsService
+        lateinit var adapter : ListNewsAdapter
+        private lateinit var layoutManager: LinearLayoutManager
+        lateinit var dialog: AlertDialog
 
         fun handleOnClick() {
-            val intent = Intent(context, NewsActivity::class.java)
+            val intent = Intent(context, SourceActivity::class.java)
             // start your next activity
             startActivity(intent)
         }
@@ -148,45 +162,30 @@ class news : AppCompatActivity() {
         ): View? {
             val rootView = inflater.inflate(R.layout.fragment_news, container, false)
             val imgResId1 = R.drawable.img1
-            val imgResId2 = R.drawable.img2
-            val imgResId3 = R.drawable.img3
-            val imgResId4 = R.drawable.img4
-            val imgResId5 = R.drawable.img5
+            mService= Common.newsService
+           /* mService.categories.enqueue(object : retrofit2.Callback<WebSite> {
+                override fun onFailure(call: Call<WebSite>, t: Throwable) {
+                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+                }
 
-            rootView.card0.img_news.setImageResource(imgResId5)
-            rootView.card0.setOnClickListener{handleOnClick()}
-            rootView.card0.tv_title.text = "Hong Kong paralysé par les manifestants"
-            rootView.card0.tv_des.text="Lorem Ipsum est un générateur de faux Vous choisissez le nombre de paragraphes..."
-            rootView.card0.tv_src.text="11 juin 2019 la source"
+                override fun onResponse(call: Call<WebSite>, response: Response<WebSite>) {
 
+                   test.text=response.body()!!.toString()
+
+                    recycler_view_news.setHasFixedSize(true)
+                    layoutManager= LinearLayoutManager(context)
+                    recycler_view_news.layoutManager=layoutManager
+
+                  //  adapter = ListNewsAdapter(context!!, response.body()!!)
+                    adapter.notifyDataSetChanged()
+                    recycler_view_news.adapter = adapter
+                }
+            })*/
             rootView.card1.img_news.setImageResource(imgResId1)
             rootView.card1.setOnClickListener{handleOnClick()}
             rootView.card1.tv_title.text = "Nouvelle manifestation des étudiants à Alger"
             rootView.card1.tv_des.text="Les étudiants manifestent à Alger pour le 18e mardi consécutif pour demander le départ des figures ...."
             rootView.card1.tv_src.text="12 juin 2019 la source"
-
-            rootView.card2.img_news.setImageResource(imgResId2)
-            rootView.card2.setOnClickListener{handleOnClick()}
-            rootView.card2.tv_title.text = "BAC 2019 à l'algérie sans connexion"
-            rootView.card2.tv_des.text="Les étudiants manifestent à Alger pour le 18e mardi consécutif pour demander le départ des figures ...."
-            rootView.card2.tv_src.text="11 juin 2019 source deuxième"
-
-            rootView.card4.img_news.setImageResource(imgResId3)
-            rootView.card4.setOnClickListener{handleOnClick()}
-            rootView.card4.tv_title.text = "Résultat du sixième"
-            rootView.card4.tv_des.text="Les étudiants manifestent à Alger pour le 18e mardi consécutif pour demander le départ des figures ...."
-            rootView.card4.tv_src.text="11 juin 2019 la source"
-
-            rootView.card5.img_news.setImageResource(imgResId4)
-            rootView.card5.setOnClickListener{handleOnClick()}
-            rootView.card5.tv_title.text = "Manifestation à Hong kong"
-            rootView.card5.tv_des.text="Les étudiants manifestent à Alger pour le 18e mardi consécutif pour demander le départ des figures ...."
-            rootView.card5.tv_src.text="11 juin 2019 la source"
-
-            rootView.card6.img_news.setImageResource(imgResId5)
-            rootView.card6.tv_title.text = "Des trés Jolies maisons "
-            rootView.card6.tv_des.text="Les étudiants manifestent à Alger pour le 18e mardi consécutif pour demander le départ des figures ...."
-            rootView.card6.tv_src.text="11 juin 2019 la source"
 
 
             return rootView

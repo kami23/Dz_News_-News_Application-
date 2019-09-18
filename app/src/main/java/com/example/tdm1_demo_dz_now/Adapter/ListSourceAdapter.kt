@@ -26,7 +26,9 @@ class ListSourceAdapter(private  val context: Context,private val webSite:WebSit
         holder.source_title.text=webSite.sources!![position].name
         holder.setItemClickListener(object: ItemClickListener
         {
+
             override fun onClick(view: View, position: Int) {
+
                 Toast.makeText(context,"Will be implement",Toast.LENGTH_SHORT).show()
             }
 

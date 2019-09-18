@@ -12,11 +12,11 @@ import com.example.tdm1_demo_dz_now.Model.WebSite
 import com.google.gson.Gson
 import dmax.dialog.SpotsDialog
 import io.paperdb.Paper
-import kotlinx.android.synthetic.main.activity_news2.*
+import kotlinx.android.synthetic.main.activity_source.*
 import retrofit2.Call
 import retrofit2.Response
 
-class NewsActivity : AppCompatActivity() {
+class SourceActivity : AppCompatActivity() {
 
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var mService:NewsService
@@ -25,7 +25,7 @@ class NewsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_news2)
+        setContentView(R.layout.activity_source)
 
         //init chache DB
         Paper.init(this)
@@ -33,16 +33,15 @@ class NewsActivity : AppCompatActivity() {
         mService = Common.newsService
 
         //Init view
-
-        swipe_to_refresh.setOnRefreshListener {
+       /* swipe_to_refresh.setOnRefreshListener {
             loadWebSiteSource(true)
-        }
-
+        }*/
         recycler_view_source_news.setHasFixedSize(true)
         layoutManager= LinearLayoutManager(this)
         recycler_view_source_news.layoutManager=layoutManager
         dialog=SpotsDialog(this)
-        loadWebSiteSource(false)
+        fetchData()
+        //loadWebSiteSource(false)
     }
 
     private fun loadWebSiteSource(isRefresh: Boolean) {
@@ -105,4 +104,21 @@ class NewsActivity : AppCompatActivity() {
 
          }
     }
+
+    fun fetchData() {
+        //Fetch new Data
+        mService.sources.enqueue(object : retrofit2.Callback<WebSite> {
+            override fun onFailure(call: Call<WebSite>, t: Throwable) {
+                Toast.makeText(baseContext, "Failed", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<WebSite>, response: Response<WebSite>) {
+                adapter = ListSourceAdapter(baseContext, response.body()!!)
+                adapter.notifyDataSetChanged()
+                recycler_view_source_news.adapter = adapter
+
+            }
+        })
+    }
+
 }
