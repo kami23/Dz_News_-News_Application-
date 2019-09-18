@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.tdm1_demo_dz_now.DetailNewsActivity
 import com.example.tdm1_demo_dz_now.Interface.ItemClickListener
 import com.example.tdm1_demo_dz_now.Model.Article
 import com.example.tdm1_demo_dz_now.Model.WebSite
@@ -39,7 +40,10 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
         holder.setItemClickListener(object: ItemClickListener
         {
             override fun onClick(view: View, position: Int) {
-                Toast.makeText(context,"Will be implement",Toast.LENGTH_SHORT).show()
+               val detail = Intent(context, DetailNewsActivity::class.java)
+                detail.putExtra("webURL",articleList[position].url)
+                context.startActivity(detail)
+
             }
 
         })

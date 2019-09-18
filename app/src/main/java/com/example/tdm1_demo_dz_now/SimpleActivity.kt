@@ -29,7 +29,9 @@ class SimpleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_simple)
         mService=Common.newsService
 
-        mService.news.enqueue(object : retrofit2.Callback<News> {
+        mService.getNewsCategory(Common.getNewsAPI("business"))
+       // mService.news
+            .enqueue(object : retrofit2.Callback<News> {
             override fun onFailure(call: Call<News>, t: Throwable) {
                 Toast.makeText(baseContext,"Failed", Toast.LENGTH_SHORT).show()
             }

@@ -11,6 +11,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".DetailNewsActivity">
+        </activity>
         <activity android:name=".SimpleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -19,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SavedActivity">
-
         </activity>
         <activity android:name=".SourceActivity">
         </activity>
@@ -35,7 +36,6 @@
         <activity
                 android:name=".HomeActivity"
                 android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
     </application>
 
