@@ -145,16 +145,17 @@ class news : AppCompatActivity() {
      */
     class PlaceholderFragment (): Fragment() {
         var cpt = 1
+        lateinit var category:String
         private lateinit var mService: NewsService
         lateinit var adapter : ListNewsAdapter
         private lateinit var layoutManager: LinearLayoutManager
         lateinit var dialog: AlertDialog
 
-        fun handleOnClick() {
+        /*fun handleOnClick() {
             val intent = Intent(context, SourceActivity::class.java)
             // start your next activity
             startActivity(intent)
-        }
+        }*/
 
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -162,32 +163,11 @@ class news : AppCompatActivity() {
         ): View? {
             val rootView = inflater.inflate(R.layout.fragment_news, container, false)
             val imgResId1 = R.drawable.img1
-            mService= Common.newsService
-           /* mService.categories.enqueue(object : retrofit2.Callback<WebSite> {
-                override fun onFailure(call: Call<WebSite>, t: Throwable) {
-                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onResponse(call: Call<WebSite>, response: Response<WebSite>) {
-
-                   test.text=response.body()!!.toString()
-
-                    recycler_view_news.setHasFixedSize(true)
-                    layoutManager= LinearLayoutManager(context)
-                    recycler_view_news.layoutManager=layoutManager
-
-                  //  adapter = ListNewsAdapter(context!!, response.body()!!)
-                    adapter.notifyDataSetChanged()
-                    recycler_view_news.adapter = adapter
-                }
-            })*/
             rootView.card1.img_news.setImageResource(imgResId1)
-            rootView.card1.setOnClickListener{handleOnClick()}
-            rootView.card1.tv_title.text = "Nouvelle manifestation des étudiants à Alger"
+            rootView.card1.setOnClickListener{}
+            rootView.card1.tv_title.text = category
             rootView.card1.tv_des.text="Les étudiants manifestent à Alger pour le 18e mardi consécutif pour demander le départ des figures ...."
             rootView.card1.tv_src.text="12 juin 2019 la source"
-
-
             return rootView
         }
 
@@ -205,6 +185,7 @@ class news : AppCompatActivity() {
              * number.
              */
             fun newInstance(sectionNumber: Int, listTitle : ArrayList<String>): PlaceholderFragment {
+                var category=listTitle[0]
                 val fragment = PlaceholderFragment()
                 val args = Bundle()
                 args.putInt(ARG_SECTION_NUMBER, sectionNumber)

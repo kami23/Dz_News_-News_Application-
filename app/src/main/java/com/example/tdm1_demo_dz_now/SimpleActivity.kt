@@ -1,5 +1,6 @@
 package com.example.tdm1_demo_dz_now
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -27,8 +28,9 @@ class SimpleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
-        mService=Common.newsService
 
+
+        mService=Common.newsService
         mService.getNewsCategory(Common.getNewsAPI("business"))
        // mService.news
             .enqueue(object : retrofit2.Callback<News> {
@@ -51,6 +53,12 @@ class SimpleActivity : AppCompatActivity() {
             }
 
         })
+
+
+        btn_saved.setOnClickListener{
+            var saved = Intent(this,SavedActivity::class.java)
+            this.startActivity(saved)
+        }
 
     }
 }

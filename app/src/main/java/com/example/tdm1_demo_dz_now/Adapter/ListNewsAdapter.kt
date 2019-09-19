@@ -25,6 +25,7 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
         return articleList.size
     }
 
+
     override fun onBindViewHolder(holder: ListNewsViewHolder, position: Int) {
        // Picasso.with(context).load(articleList[position].urlToImage)
 
@@ -35,15 +36,15 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
         }
 
 
-
-
         holder.setItemClickListener(object: ItemClickListener
         {
             override fun onClick(view: View, position: Int) {
                val detail = Intent(context, DetailNewsActivity::class.java)
-                detail.putExtra("webURL",articleList[position].url)
-                context.startActivity(detail)
+                detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+                detail.putExtra("webURL",articleList[position].url)
+
+                context.startActivity(detail)
             }
 
         })
