@@ -36,12 +36,6 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
             holder.news_title.text = articleList[position].title!!
         }
 
-        if(articleList[position].description!!.length>65){
-            holder.description.text= articleList[position].description!!.substring(0, 65) + "..."
-        }else {
-            holder.description.text = articleList[position].description!!
-        }
-
         holder.setItemClickListener(object: ItemClickListener
         {
             override fun onClick(view: View, position: Int) {
