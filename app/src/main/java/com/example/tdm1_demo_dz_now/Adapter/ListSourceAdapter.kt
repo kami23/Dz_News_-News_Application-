@@ -1,7 +1,7 @@
 package com.example.tdm1_demo_dz_now.Adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,8 @@ import com.example.tdm1_demo_dz_now.Interface.ItemClickListener
 import com.example.tdm1_demo_dz_now.Model.WebSite
 import com.example.tdm1_demo_dz_now.R
 
-class ListSourceAdapter(private  val context: Context,private val webSite:WebSite):RecyclerView.Adapter<ListSourceViewHolder>() {
+class ListSourceAdapter(private  val context: Context,private val webSite:WebSite):
+    androidx.recyclerview.widget.RecyclerView.Adapter<ListSourceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListSourceViewHolder {
          val inflater= LayoutInflater.from(parent.context)

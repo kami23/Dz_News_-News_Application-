@@ -1,11 +1,11 @@
 package com.example.tdm1_demo_dz_now
 
-import android.support.design.widget.TabLayout
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayout
+import androidx.appcompat.app.AppCompatActivity
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_news.view.*
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.Toast
 import com.example.tdm1_demo_dz_now.Adapter.ListNewsAdapter
@@ -148,7 +148,7 @@ class news : AppCompatActivity() {
         lateinit var category:String
         private lateinit var mService: NewsService
         lateinit var adapter : ListNewsAdapter
-        private lateinit var layoutManager: LinearLayoutManager
+        private lateinit var layoutManager: androidx.recyclerview.widget.LinearLayoutManager
         lateinit var dialog: AlertDialog
 
         /*fun handleOnClick() {

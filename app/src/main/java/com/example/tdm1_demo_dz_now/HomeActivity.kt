@@ -1,7 +1,7 @@
 package com.example.tdm1_demo_dz_now
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_home.*
 import android.content.Intent

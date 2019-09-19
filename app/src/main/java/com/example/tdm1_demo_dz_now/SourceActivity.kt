@@ -1,9 +1,9 @@
 package com.example.tdm1_demo_dz_now
 
 import android.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.Toast
 import com.example.tdm1_demo_dz_now.Adapter.ListSourceAdapter
 import com.example.tdm1_demo_dz_now.Common.Common
@@ -18,7 +18,7 @@ import retrofit2.Response
 
 class SourceActivity : AppCompatActivity() {
 
-    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var layoutManager: androidx.recyclerview.widget.LinearLayoutManager
     private lateinit var mService:NewsService
     lateinit var adapter : ListSourceAdapter
     lateinit var dialog: AlertDialog
@@ -37,7 +37,7 @@ class SourceActivity : AppCompatActivity() {
             loadWebSiteSource(true)
         }*/
         recycler_view_source_news.setHasFixedSize(true)
-        layoutManager= LinearLayoutManager(this)
+        layoutManager= androidx.recyclerview.widget.LinearLayoutManager(this)
         recycler_view_source_news.layoutManager=layoutManager
         dialog=SpotsDialog(this)
         fetchData()

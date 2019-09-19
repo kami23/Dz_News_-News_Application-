@@ -2,7 +2,7 @@ package com.example.tdm1_demo_dz_now.Adapter
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,8 @@ import com.example.tdm1_demo_dz_now.Model.Article
 import com.example.tdm1_demo_dz_now.Model.WebSite
 import com.example.tdm1_demo_dz_now.R
 
-class ListNewsAdapter(private val articleList :List<Article>, private  val context: Context):RecyclerView.Adapter<ListNewsViewHolder>() {
+class ListNewsAdapter(private val articleList :List<Article>, private  val context: Context):
+    androidx.recyclerview.widget.RecyclerView.Adapter<ListNewsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListNewsViewHolder {
         val inflater= LayoutInflater.from(parent.context)
@@ -35,6 +36,11 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
             holder.news_title.text = articleList[position].title!!
         }
 
+        if(articleList[position].description!!.length>65){
+            holder.description.text= articleList[position].description!!.substring(0, 65) + "..."
+        }else {
+            holder.description.text = articleList[position].description!!
+        }
 
         holder.setItemClickListener(object: ItemClickListener
         {
