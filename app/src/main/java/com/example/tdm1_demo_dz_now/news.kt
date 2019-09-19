@@ -185,7 +185,6 @@ class news : AppCompatActivity() {
              * number.
              */
             fun newInstance(sectionNumber: Int, listTitle : ArrayList<String>): PlaceholderFragment {
-                var category=listTitle[0]
                 val fragment = PlaceholderFragment()
                 val args = Bundle()
                 args.putInt(ARG_SECTION_NUMBER, sectionNumber)

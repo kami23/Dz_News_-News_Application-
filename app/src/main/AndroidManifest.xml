@@ -13,8 +13,7 @@
             android:theme="@style/AppTheme">
         <activity android:name=".SavedActivity">
         </activity>
-        <activity android:name=".MainActivity">
-        </activity>
+
         <activity android:name=".DetailNewsActivity">
         </activity>
         <activity android:name=".SimpleActivity">
