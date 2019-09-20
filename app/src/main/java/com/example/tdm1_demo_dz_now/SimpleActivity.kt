@@ -1,6 +1,7 @@
 package com.example.tdm1_demo_dz_now
 
 import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,8 @@ import android.widget.Toast
 import com.example.tdm1_demo_dz_now.Adapter.ListNewsAdapter
 import com.example.tdm1_demo_dz_now.Adapter.ListSourceAdapter
 import com.example.tdm1_demo_dz_now.Common.Common
+import com.example.tdm1_demo_dz_now.Data.ArticleRepository
+import com.example.tdm1_demo_dz_now.Data.ArticleRoomDatabase
 import com.example.tdm1_demo_dz_now.Interface.NewsService
 import com.example.tdm1_demo_dz_now.Model.News
 import com.example.tdm1_demo_dz_now.Model.WebSite
@@ -29,7 +32,6 @@ class SimpleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
 
-
         mService=Common.newsService
         mService.getNewsCategory(Common.getNewsAPI("business"))
        // mService.news
@@ -42,12 +44,10 @@ class SimpleActivity : AppCompatActivity() {
 
                 Toast.makeText(baseContext,"success", Toast.LENGTH_SHORT).show()
                 recycler_news.setHasFixedSize(true)
-
                 layoutManager= androidx.recyclerview.widget.LinearLayoutManager(baseContext)
                 recycler_news.layoutManager=layoutManager
 
-                var
-                adapter = ListNewsAdapter(response.body()!!.articles!!,baseContext)
+                var adapter = ListNewsAdapter(response.body()!!.articles!!,baseContext)
                 adapter.notifyDataSetChanged()
                 recycler_news.adapter = adapter
             }
@@ -56,9 +56,29 @@ class SimpleActivity : AppCompatActivity() {
 
 
         btn_saved.setOnClickListener{
-            var saved = Intent(this,SavedActivity::class.java)
+            var saved = Intent(this, SavedActivity::class.java)
             this.startActivity(saved)
         }
 
+    }
+
+
+    fun delete(){
+        object : AsyncTask<Void, Void, Void>() {
+            override fun doInBackground(vararg voids: Void): Void? {
+                val db = ArticleRoomDatabase.getDatabase(this@SimpleActivity)
+                val dao = db?.articleDao()
+
+                // dao?.insert(article!!)
+                var n =dao?.deleteAll()
+
+                return null
+            }
+
+            override fun onPostExecute(result: Void?) {
+                Toast.makeText(this@SimpleActivity, "Article Suvegardé", Toast.LENGTH_LONG).show()
+
+            }
+        }.execute()
     }
 }

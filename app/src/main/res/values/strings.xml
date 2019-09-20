@@ -14,4 +14,5 @@
     <string name="facebook_app_id">482567248989741</string>
     <string name="fb_login_protocol_scheme">fb482567248989741</string>
     <string name="sign_out_button">Sign out</string>
+    <string name="Sauvgardes">Sauvgardes</string>
 </resources>

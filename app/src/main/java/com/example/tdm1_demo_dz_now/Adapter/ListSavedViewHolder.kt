@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.news_layout.view.*
 import kotlinx.android.synthetic.main.source_news_layout.view.*
 import java.text.FieldPosition
 
-class ListNewsViewHolder (itemView:View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) ,View.OnClickListener {
+class ListSavedViewHolder (itemView:View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) ,View.OnClickListener {
 
     private lateinit var itemClickListener: ItemClickListener
     var news_title=itemView.news_title
@@ -19,9 +19,6 @@ class ListNewsViewHolder (itemView:View): androidx.recyclerview.widget.RecyclerV
     init {
         itemView.setOnClickListener(this)
 
-        button_save.setOnClickListener{
-            this.itemClickListener.onSaveLocal(adapterPosition)
-        }
     }
     fun setItemClickListener(itemClickListener: ItemClickListener){
         this.itemClickListener=itemClickListener
@@ -29,9 +26,6 @@ class ListNewsViewHolder (itemView:View): androidx.recyclerview.widget.RecyclerV
     override fun onClick(v:View?){
         itemClickListener.onClick(v!!,adapterPosition)
     }
-
-
-
 
 
 }

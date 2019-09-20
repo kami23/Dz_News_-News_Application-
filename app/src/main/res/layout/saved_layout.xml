@@ -16,12 +16,10 @@
         <ImageView
                 android:id="@+id/a_news_image"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="133dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="34dp" android:layout_marginEnd="8dp"
-                android:layout_marginBottom="70dp" app:layout_constraintBottom_toTopOf="@+id/saved"
-                app:layout_constraintEnd_toStartOf="@+id/news_src" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/news_src"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/news_title"/>
         <TextView
                 android:id="@+id/news_title"
                 android:layout_width="0dp"
@@ -60,16 +58,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp" android:layout_marginBottom="48dp"
-                android:text="Save" app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Unsave" app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/news_src"
-        />
-
-        <TextView
-                android:text="save"
-                android:id="@+id/saved" android:layout_width="0dp"
-                  android:layout_height="25dp" android:layout_marginBottom="38dp"
-                  app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                  app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/a_news_image"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ class Article {
     var content: String?=null
     var publishedAt:String?=null
     var description:String?=null
+    var saved:Boolean?=false
     constructor() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
