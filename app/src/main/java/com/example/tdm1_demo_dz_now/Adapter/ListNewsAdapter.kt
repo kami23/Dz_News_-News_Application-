@@ -1,6 +1,5 @@
 package com.example.tdm1_demo_dz_now.Adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
@@ -11,22 +10,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.tdm1_demo_dz_now.Data.ArticleEntity
 import com.example.tdm1_demo_dz_now.DetailNewsActivity
-import com.example.tdm1_demo_dz_now.Data.ArticleRepository
 import com.example.tdm1_demo_dz_now.Data.ArticleRoomDatabase
+import com.example.tdm1_demo_dz_now.DataFirebase
 import com.example.tdm1_demo_dz_now.Interface.ItemClickListener
 import com.example.tdm1_demo_dz_now.Model.Article
 import com.example.tdm1_demo_dz_now.R
+import com.google.firebase.database.DatabaseReference
 import com.squareup.picasso.Picasso
-import org.antlr.v4.runtime.misc.MurmurHash.finish
 
 class ListNewsAdapter(private val articleList :List<Article>, private  val context: Context):
     androidx.recyclerview.widget.RecyclerView.Adapter<ListNewsViewHolder>() {
      //var db= Room.databaseBuilder(context,ApplicationDB::class.java,"ArticlesDB").build()
-
      // var db = ArticleRoomDatabase.getDatabase(context)
      // var dao = db.articleDao()
     // val articlRepository = ArticleRepository.getInstance(dao)
 
+    private lateinit var database: DatabaseReference
+    private lateinit var userId: String
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListNewsViewHolder {
         val inflater= LayoutInflater.from(parent.context)
         val itemView=inflater.inflate(R.layout.news_layout,parent,false)
@@ -84,7 +84,7 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
                          val db = ArticleRoomDatabase.getDatabase(context)
                          val dao = db?.articleDao()
 
-                         dao?.insert(article!!)
+                         dao?.insert(article)
 
 
                          return null
@@ -95,6 +95,17 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
 
                      }
                  }.execute()
+
+
+                 database=DataFirebase.getInstance()!!
+                 userId=DataFirebase.getUserId()!!
+                 //   database.child("articles").setValue(articleList[position].url)
+                 //  database.child("users").child(userId).child("articles").setValue(articleList[position].url)
+                 val userReminders = database.child("articles").child(userId).child("urls")
+                 val key = userReminders.push().key
+                 val urlArticle = articleList[position].url
+                 userReminders.child(key!!).setValue(urlArticle)
+                 Toast.makeText(context,userId.toString(), Toast.LENGTH_SHORT).show()
 
 /*                 val word = articleList[position].title.toString()
                  var article = ArticleEntity(1,articleList[position].title!!,articleList[position].content!!,
@@ -120,6 +131,7 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
 
                  }.start()*/
             }
+
 
         })
     }

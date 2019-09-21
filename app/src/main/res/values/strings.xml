@@ -14,5 +14,11 @@
     <string name="facebook_app_id">482567248989741</string>
     <string name="fb_login_protocol_scheme">fb482567248989741</string>
     <string name="sign_out_button">Sign out</string>
-    <string name="Sauvgardes">Sauvgardes</string>
+    <string name="sauvgardes">Sauvgardes</string>
+    <string name="title_activity_main">DZ NOW</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>

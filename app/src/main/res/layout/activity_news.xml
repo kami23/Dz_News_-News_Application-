@@ -6,7 +6,7 @@
                                                      android:layout_width="match_parent"
                                                      android:layout_height="match_parent"
                                                      android:fitsSystemWindows="true"
-                                                     tools:context=".news">
+                                                     tools:context=".newsAct">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -27,20 +27,9 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <Button
-                android:id="@+id/sign_out_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="36dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/sign_out_button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+                android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
         android:background="@color/colorPrimaryLight"
@@ -53,24 +42,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab_text_1"/>
-
-            <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabItem2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_text_2"/>
-
-            <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabItem3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_text_3"/>
-
-            <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabItem4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_text_4"/>
 
         </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>

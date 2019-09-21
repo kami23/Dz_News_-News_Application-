@@ -4,23 +4,23 @@ import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.Toast
 import com.example.tdm1_demo_dz_now.Adapter.ListNewsAdapter
-import com.example.tdm1_demo_dz_now.Adapter.ListSourceAdapter
 import com.example.tdm1_demo_dz_now.Common.Common
-import com.example.tdm1_demo_dz_now.Data.ArticleRepository
 import com.example.tdm1_demo_dz_now.Data.ArticleRoomDatabase
 import com.example.tdm1_demo_dz_now.Interface.NewsService
 import com.example.tdm1_demo_dz_now.Model.News
-import com.example.tdm1_demo_dz_now.Model.WebSite
-import com.google.gson.Gson
-import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_simple.*
-import kotlinx.android.synthetic.main.activity_source.*
-import kotlinx.android.synthetic.main.fragment_news.*
 import retrofit2.Call
 import retrofit2.Response
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class SimpleActivity : AppCompatActivity() {
 
@@ -34,7 +34,7 @@ class SimpleActivity : AppCompatActivity() {
 
         mService=Common.newsService
         mService.getNewsCategory(Common.getNewsAPI("business"))
-       // mService.news
+       // mService.newsAct
             .enqueue(object : retrofit2.Callback<News> {
             override fun onFailure(call: Call<News>, t: Throwable) {
                 Toast.makeText(baseContext,"Failed", Toast.LENGTH_SHORT).show()
@@ -45,7 +45,7 @@ class SimpleActivity : AppCompatActivity() {
                 Toast.makeText(baseContext,"success", Toast.LENGTH_SHORT).show()
                 recycler_news.setHasFixedSize(true)
                 layoutManager= androidx.recyclerview.widget.LinearLayoutManager(baseContext)
-                recycler_news.layoutManager=layoutManager
+                recycler_news.layoutManager=layoutManager!!
 
                 var adapter = ListNewsAdapter(response.body()!!.articles!!,baseContext)
                 adapter.notifyDataSetChanged()
@@ -56,8 +56,13 @@ class SimpleActivity : AppCompatActivity() {
 
 
         btn_saved.setOnClickListener{
-            var saved = Intent(this, SavedActivity::class.java)
-            this.startActivity(saved)
+
+            val mDatabase = FirebaseDatabase.getInstance().getReference()
+            mDatabase.child("message").setValue("Hello, World!")
+
+           /* val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("message")
+            myRef.setValue("Hello, World!")*/
         }
 
     }

@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeActivity">
+        tools:context=".LoginActivity">
     <FrameLayout android:id="@+id/frameLayout" android:layout_width="0dp"
                  android:layout_height="0dp" app:layout_constraintBottom_toBottomOf="parent"
                  app:layout_constraintEnd_toEndOf="parent"
@@ -23,9 +23,9 @@
     <com.google.android.gms.common.SignInButton
             android:id="@+id/google_button"
             android:layout_width="0dp"
-            android:layout_height="52dp"
+            android:layout_height="100dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="445dp"
+            android:layout_marginTop="436dp"
             android:layout_marginEnd="8dp"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"

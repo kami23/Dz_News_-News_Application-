@@ -9,14 +9,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
     >
 
         <ImageView
                 android:id="@+id/a_news_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="129dp"
+                android:layout_height="134dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="34dp" android:layout_marginEnd="8dp"
                 android:layout_marginBottom="70dp" app:layout_constraintBottom_toTopOf="@+id/saved"
@@ -25,7 +25,7 @@
         <TextView
                 android:id="@+id/news_title"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="34dp" android:layout_marginEnd="16dp"
                 android:layout_marginBottom="15dp" android:text="demo title"
                 android:textSize="12sp" android:textStyle="bold"
@@ -35,13 +35,13 @@
 
         <TextView
                 android:id="@+id/news_des"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="190dp"
+                android:layout_height="52dp"
                 android:layout_marginBottom="12dp" android:text="Description" android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@+id/news_src" app:layout_constraintEnd_toEndOf="@+id/news_src"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/news_src"
-                app:layout_constraintTop_toBottomOf="@+id/news_title"
-        />
+                app:layout_constraintTop_toBottomOf="@+id/news_title"/>
 
 
         <TextView
@@ -64,12 +64,21 @@
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/news_src"
         />
 
+        <Button
+                android:id="@+id/button_signets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="208dp" android:layout_marginBottom="48dp"
+                android:text="Save" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/news_src"
+                app:layout_constraintVertical_bias="1.0"/>
+
         <TextView
-                android:text="save"
-                android:id="@+id/saved" android:layout_width="0dp"
-                  android:layout_height="25dp" android:layout_marginBottom="38dp"
-                  app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                  app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/a_news_image"
+                android:id="@+id/saved"
+                android:layout_width="0dp" android:layout_height="25dp"
+                android:layout_marginBottom="38dp" android:text="save"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/a_news_image"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

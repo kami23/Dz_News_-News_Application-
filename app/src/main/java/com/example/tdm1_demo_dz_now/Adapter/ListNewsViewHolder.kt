@@ -15,12 +15,16 @@ class ListNewsViewHolder (itemView:View): androidx.recyclerview.widget.RecyclerV
     var source=itemView.news_src
     var button_save=itemView.button_save
     var a_news_image=itemView.a_news_image
-
+    var button_signets=itemView.button_signets
     init {
         itemView.setOnClickListener(this)
 
         button_save.setOnClickListener{
             this.itemClickListener.onSaveLocal(adapterPosition)
+        }
+
+        button_signets.setOnClickListener{
+            this.itemClickListener.onSaveExternal(adapterPosition)
         }
     }
     fun setItemClickListener(itemClickListener: ItemClickListener){

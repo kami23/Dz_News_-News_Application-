@@ -1,23 +1,14 @@
 package com.example.tdm1_demo_dz_now.Adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.tdm1_demo_dz_now.Data.ArticleEntity
 import com.example.tdm1_demo_dz_now.DetailNewsActivity
-import com.example.tdm1_demo_dz_now.Data.ArticleRepository
-import com.example.tdm1_demo_dz_now.Data.ArticleRoomDatabase
 import com.example.tdm1_demo_dz_now.Interface.ItemClickListener
-import com.example.tdm1_demo_dz_now.Model.Article
 import com.example.tdm1_demo_dz_now.R
-import com.squareup.picasso.Picasso
-import org.antlr.v4.runtime.misc.MurmurHash.finish
 
 class ListSavedAdapter(private val articleList :List<ArticleEntity>, private  val context: Context):
     androidx.recyclerview.widget.RecyclerView.Adapter<ListSavedViewHolder>() {
@@ -40,16 +31,16 @@ class ListSavedAdapter(private val articleList :List<ArticleEntity>, private  va
     override fun onBindViewHolder(holder: ListSavedViewHolder, position: Int) {
         // Picasso.with(context).load(articleList[position].urlToImage)
 
-        if (articleList[position].title!!.length>65) {
+        if (articleList[position].title.length>65) {
             holder.news_title.text = articleList[position].title!!.substring(0, 65) + "..."
         }else {
-            holder.news_title.text = articleList[position].title!!
+            holder.news_title.text = articleList[position].title
         }
 
         if (articleList[position].description!=null){
 
-            if (articleList[position].description!!.length>65){
-                holder.description.text = articleList[position].description!!.substring(0, 65) + "..."
+            if (articleList[position].description.length>65){
+                holder.description.text = articleList[position].description.substring(0, 65) + "..."
             }
         }
 //    Picasso.get().load(articleList[position].urlToImage).into(holder.a_news_image);

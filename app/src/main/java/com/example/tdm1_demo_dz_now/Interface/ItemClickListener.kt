@@ -8,4 +8,8 @@ interface ItemClickListener {
 
     fun onSaveLocal(position:Int){
     }
+
+    fun onSaveExternal(position: Int){
+
+    }
 }

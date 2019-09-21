@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 
 android {
@@ -41,13 +42,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0-beta01'
 
     //firebase
-    implementation 'com.google.firebase:firebase-core:16.0.4'
-    implementation 'com.google.firebase:firebase-auth:16.0.4'
-    implementation 'com.google.firebase:firebase-database:16.0.4'
-
+    implementation 'com.google.firebase:firebase-core:17.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.0.0'
+    implementation 'com.google.firebase:firebase-database:19.1.0'
 
     //play service auth
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
     implementation 'androidx.cardview:cardview:1.0.0-beta01'
@@ -60,7 +60,7 @@ dependencies {
 
     implementation 'com.google.android.exoplayer:exoplayer:2.7.2'
 
-   //room
+    //room
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
@@ -72,7 +72,6 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:$room_version"
     implementation "android.arch.persistence.room:compiler:$room_version"
     implementation "android.arch.persistence.room:guava:$room_version"
-
 
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
@@ -86,5 +85,3 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
 }
-
-apply plugin: 'com.google.gms.google-services'

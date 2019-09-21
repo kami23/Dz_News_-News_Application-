@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_home.*
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -12,10 +13,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.FirebaseUser
 
-class HomeActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
 
     //1
@@ -23,8 +26,9 @@ class HomeActivity : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var mGoogleSignInOptions: GoogleSignInOptions
     private lateinit var firebaseAuth: FirebaseAuth
+    private var user : FirebaseUser?=null
     companion object {
-        fun getLaunchIntent(from: Context) = Intent(from, HomeActivity::class.java).apply {
+        fun getLaunchIntent(from: Context) = Intent(from, LoginActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         }
     }
@@ -34,12 +38,13 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        FirebaseApp.initializeApp(this)
         configureGoogleSignIn()
         setupUI()
         firebaseAuth = FirebaseAuth.getInstance()
 
         /*bg_image.setOnClickListener {
-            val intent = Intent(this, news::class.java)
+            val intent = Intent(this, newsAct::class.java)
             // start your next activity
             startActivity(intent)
         }*/
@@ -52,15 +57,28 @@ class HomeActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val user = FirebaseAuth.getInstance().currentUser
+
         if (user != null) {
-            startActivity(news.getLaunchIntent(this))
+
+        var infos = Array<String>(5,{n:Int->""})
+        infos[0]= user.uid.toString()
+        infos[1]= user.email.toString()
+        infos[2]= user.photoUrl.toString()
+        infos[3]= user.displayName.toString()
+
+        val intent = Intent(this@LoginActivity,MainActivity::class.java)
+        intent.putExtra("INFO_USER",infos)
+        startActivity(intent)
+  //      startActivity(newsAct.getLaunchIntent(this))
+
+    //        startActivity(newsAct.getLaunchIntent(this))
             finish()
         }
     }
 
     private fun configureGoogleSignIn() {
         mGoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(R.string.request_client_id))
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, mGoogleSignInOptions)
@@ -91,10 +109,22 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                startActivity(news.getLaunchIntent(this))
+                 user = firebaseAuth.currentUser
+
+                var infos = Array<String>(5,{n:Int->""})
+                infos[0]= user!!.uid.toString()
+                infos[1]= user!!.email.toString()
+                infos[2]= user!!.photoUrl.toString()
+                infos[3]= user!!.displayName.toString()
+
+                val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                intent.putExtra("INFO_USER",infos)
+                startActivity(intent)
+                //startActivity(newsAct.getLaunchIntent(this))
             } else {
                 Toast.makeText(this, "Google sign in failed:(", Toast.LENGTH_LONG).show()
             }

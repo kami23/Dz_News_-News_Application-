@@ -11,17 +11,18 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".SignetsActivity">
+        </activity>
+        <activity
+                android:name=".MainActivity"
+                android:label="@string/title_activity_main"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".SavedActivity">
         </activity>
-
         <activity android:name=".DetailNewsActivity">
         </activity>
         <activity android:name=".SimpleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".SourceActivity">
         </activity>
@@ -30,13 +31,18 @@
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".news"
+                android:name=".newsAct"
                 android:label="@string/title_activity_news"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".HomeActivity"
+                android:name=".LoginActivity"
                 android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
