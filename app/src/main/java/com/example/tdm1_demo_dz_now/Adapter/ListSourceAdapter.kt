@@ -29,10 +29,9 @@ class ListSourceAdapter(private  val context: Context,private val webSite:WebSit
         {
 
             override fun onClick(view: View, position: Int) {
-
                 Toast.makeText(context,"Will be implement",Toast.LENGTH_SHORT).show()
             }
 
         })
     }
-    }
+}

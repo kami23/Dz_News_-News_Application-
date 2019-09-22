@@ -50,6 +50,7 @@ class SimpleActivity : AppCompatActivity() {
                 var adapter = ListNewsAdapter(response.body()!!.articles!!,baseContext)
                 adapter.notifyDataSetChanged()
                 recycler_news.adapter = adapter
+
             }
 
         })

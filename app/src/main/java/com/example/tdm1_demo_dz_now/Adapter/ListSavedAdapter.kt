@@ -50,9 +50,7 @@ class ListSavedAdapter(private val articleList :List<ArticleEntity>, private  va
             override fun onClick(view: View, position: Int) {
                 val detail = Intent(context, DetailNewsActivity::class.java)
                 detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
-              //  detail.putExtra("webURL",articleList[position].url)
-
+                //  detail.putExtra("webURL",articleList[position].url)
                 context.startActivity(detail)
             }
 

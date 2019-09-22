@@ -7,4 +7,9 @@
         android:layout_height="match_parent"
         tools:context=".SignetsActivity">
 
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_signets"
+            android:layout_width="395dp"
+            android:layout_height="715dp" tools:layout_editor_absoluteX="8dp" tools:layout_editor_absoluteY="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
