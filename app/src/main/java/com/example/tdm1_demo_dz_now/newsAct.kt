@@ -28,6 +28,7 @@ import com.example.tdm1_demo_dz_now.Common.Common
 import com.example.tdm1_demo_dz_now.Interface.NewsService
 import com.example.tdm1_demo_dz_now.Model.News
 import com.google.firebase.auth.FirebaseAuth
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.fragment_news.*
 import retrofit2.Call
 import retrofit2.Response
@@ -118,14 +119,13 @@ class newsAct : AppCompatActivity() {
     }
 
 
-
-
     class PlaceholderFragment (): Fragment() {
         var cpt = 1
         var category : String?=null
         private lateinit var mService: NewsService
         lateinit var adapter : ListNewsAdapter
         private lateinit var layoutManager: androidx.recyclerview.widget.LinearLayoutManager
+        lateinit var  alertDialog: AlertDialog
 
         @SuppressLint("ValidFragment")
         constructor(category:String) : this() {
@@ -136,15 +136,20 @@ class newsAct : AppCompatActivity() {
             savedInstanceState: Bundle?
         ): View? {
             val rootView = inflater.inflate(R.layout.fragment_news, container, false)
+
+            alertDialog= SpotsDialog(context)
+            alertDialog.show()
             mService= Common.newsService
             mService.getNewsCategory(Common.getNewsAPI(this.category!!))
                 // mService.newsAct
                 .enqueue(object : retrofit2.Callback<News> {
                     override fun onFailure(call: Call<News>, t: Throwable) {
+                        alertDialog.dismiss()
                         Toast.makeText(context,"Failed check connexion ", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onResponse(call: Call<News>, response: Response<News>) {
+                        alertDialog.dismiss()
 
                         rootView.recycler_real_news.setHasFixedSize(true)
                         layoutManager= androidx.recyclerview.widget.LinearLayoutManager(context)

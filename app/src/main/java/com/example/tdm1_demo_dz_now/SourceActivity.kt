@@ -26,6 +26,7 @@ class SourceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_source)
+        setTitle(R.string.Sites_web)
 
         //init chache DB
         Paper.init(this)

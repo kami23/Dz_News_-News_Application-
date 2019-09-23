@@ -19,6 +19,7 @@
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".SavedActivity">
+            android:label="@string/art"
         </activity>
         <activity android:name=".DetailNewsActivity">
         </activity>

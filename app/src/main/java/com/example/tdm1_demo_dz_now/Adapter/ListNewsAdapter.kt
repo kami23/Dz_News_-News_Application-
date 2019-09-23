@@ -14,6 +14,7 @@ import com.example.tdm1_demo_dz_now.Data.ArticleRoomDatabase
 import com.example.tdm1_demo_dz_now.DataFirebase
 import com.example.tdm1_demo_dz_now.Interface.ItemClickListener
 import com.example.tdm1_demo_dz_now.Model.Article
+import com.example.tdm1_demo_dz_now.Model.Signet
 import com.example.tdm1_demo_dz_now.R
 import com.google.firebase.database.DatabaseReference
 import com.squareup.picasso.Picasso
@@ -101,11 +102,11 @@ class ListNewsAdapter(private val articleList :List<Article>, private  val conte
                  userId=DataFirebase.getUserId()!!
                  //   database.child("articles").setValue(articleList[position].url)
                  //  database.child("users").child(userId).child("articles").setValue(articleList[position].url)
-                 val userReminders = database.child("articles").child(userId).child("urls")
-                 val key = userReminders.push().key
-                 val urlArticle = articleList[position].url
-                 userReminders.child(key!!).setValue(urlArticle)
-                 Toast.makeText(context,userId.toString(), Toast.LENGTH_SHORT).show()
+                 var signet = Signet( articleList[position].title!!,articleList[position].url!!)
+
+                 val userArticles = database.child("articles").child(userId).child("urls")
+                 val key = userArticles.push().key
+                 userArticles.child(key!!).setValue(signet)
 
 /*                 val word = articleList[position].title.toString()
                  var article = ArticleEntity(1,articleList[position].title!!,articleList[position].content!!,

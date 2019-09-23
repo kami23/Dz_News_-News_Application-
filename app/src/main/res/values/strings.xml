@@ -21,4 +21,10 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="signets">Signets</string>
+    <string name="Sites_web">Sites web</string>
+    <string name="art">Articles sauvgardés</string>
+    <string name="Article">Article</string>
+
+
 </resources>

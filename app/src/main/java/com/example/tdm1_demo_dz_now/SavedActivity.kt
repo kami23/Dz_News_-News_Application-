@@ -20,7 +20,7 @@ class SavedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_saved)
-        setTitle(R.string.sauvgardes)
+        setTitle(R.string.art)
 
         loadData()
 

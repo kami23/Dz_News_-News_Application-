@@ -1,17 +1,20 @@
 package com.example.tdm1_demo_dz_now.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.example.tdm1_demo_dz_now.DetailNewsActivity
 import com.example.tdm1_demo_dz_now.Interface.ItemClickListener
 import com.example.tdm1_demo_dz_now.Model.Article
+import com.example.tdm1_demo_dz_now.Model.Signet
 import com.example.tdm1_demo_dz_now.Model.WebSite
 import com.example.tdm1_demo_dz_now.R
 
-class ListSignetsAdapter(private  val context: Context,private val articles:List<String>):
+class ListSignetsAdapter(private  val context: Context,private val articles:List<Signet>):
     androidx.recyclerview.widget.RecyclerView.Adapter<ListSignetsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListSignetsViewHolder {
@@ -25,13 +28,28 @@ class ListSignetsAdapter(private  val context: Context,private val articles:List
     }
 
     override fun onBindViewHolder(holder: ListSignetsViewHolder, position: Int) {
-        holder.title.text=articles[position]!!
+
+        if (articles[position].title!!.length>65) {
+            holder.title.text = articles[position].title!!.substring(0, 65) + "..."
+        }else {
+            holder.title.text = articles[position].title!!
+        }
+
+        if (articles[position].url!=null){
+
+            if (articles[position].url!!.length>65){
+                holder.url.text = articles[position].url!!.substring(0, 65) + "..."
+            }
+        }
         holder.setItemClickListener(object: ItemClickListener
         {
-
             override fun onClick(view: View, position: Int) {
-                Toast.makeText(context,"Will be implement",Toast.LENGTH_SHORT).show()
-            }
+                val detail = Intent(context, DetailNewsActivity::class.java)
+                detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                detail.putExtra("webURL",articles[position].url)
+
+                context.startActivity(detail)     }
 
         })
     }
